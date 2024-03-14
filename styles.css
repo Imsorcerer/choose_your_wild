@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+ @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 * {
   margin: 0;
@@ -8,7 +8,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
-}
+ }
 
 .container {
   max-width: 1050px;
@@ -191,7 +191,7 @@ body {
   font-size: 30px;
   color: #aa0505c4;
 }
-.cards{
+/* .cards,.main-container{
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   justify-content: center;
@@ -202,8 +202,8 @@ body {
   padding: 1rem 80px;
 }
 .position img {
-  height: 200px;
-  width: 150px;
+  height: 150px;
+  width: 200px;
   border: 1px solid black;
   border-radius: 45%;
   margin-top: 20px;
@@ -212,8 +212,8 @@ body {
   position: relative;
   }
 .cover{
-  height: 200px;
-  width: 150px;
+  height: 150px;
+  width: 200px;
   border: 1px solid black;
   border-radius: 45%;
   margin-top: 20px;
@@ -223,43 +223,21 @@ body {
   position: absolute;
   cursor: grabbing;
   
-}
-.cover:hover{
+} */
+/* .cover:hover{
   transition: 0.3s ease-in-out;
   background-color: transparent;
   
-}
+} */
 .mode h3 {
   text-align: center;
   margin: 50px;
   font-size: 50px;
   color: #aa0505c4;
-}
-@media screen and (max-width: 990px) {
-  .cards {
-    grid-template-columns: repeat(3, 1fr);
-    padding: 40px 50px;
-  }
+} 
 
-  @media screen and (max-width: 500px) {
-    .cards {
-      grid-template-columns: repeat(2, 1fr);
-      padding: 40px 50px;
-    }
-  }
-  @media screen and (max-width: 990px) {
-    .container1 {
-      grid-template-columns: repeat(3, 1fr);
-      padding: 2rem 50 px;
-    }
-  }
-  @media screen and (max-width: 650px) {
-    .container1 {
-      grid-template-columns: repeat(2, 1fr);
-      padding: 2rem 50 px;
-    }
-  }
-}
+
+
 footer{
   background-color: #aa0505c4;
   color: whitesmoke;
@@ -271,3 +249,59 @@ footer{
   width: 100%;
   letter-spacing: 5px;
 }
+.main-container{
+   display: grid;
+   grid-template-columns: repeat(5, 1fr);
+  
+  gap: 2rem;
+  padding: 1rem 80px;
+}
+
+.sub-container{
+  height:150px;
+  width: 200px;
+  border-radius: 40%;
+  position: relative;
+   overflow: hidden;
+  
+}
+.scratch-card{
+  position: absolute;
+   inset: 0;
+   
+  font-size: 20px;
+  font-weight: bold;
+  cursor: grabbing;
+}
+.scratch-card img{
+  width: 200px;
+  height: 150px;
+  border-radius: 40%;
+  
+  border: 1px solid black;
+  box-shadow: 2px 2px 20px;
+  }
+canvas{
+  position: absolute;
+     cursor: grabbing;
+  transform: translate(-100px);
+}
+
+@media screen and (max-width: 990px) {
+  .main-container {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 40px 50px;
+  }
+  footer{
+    width: 100%;
+  }
+}
+  @media screen and (max-width: 560px) {
+    .main-container {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 40px 50px;
+    }
+    footer{
+      width: 100%;
+    }
+  }
