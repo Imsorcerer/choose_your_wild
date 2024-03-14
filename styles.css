@@ -208,7 +208,9 @@ body {
   border-radius: 45%;
   margin-top: 20px;
   box-shadow: 2px 2px 10px #aa0505c4;
-}
+  z-index: -1;
+  position: relative;
+  }
 .cover{
   height: 200px;
   width: 150px;
@@ -216,6 +218,16 @@ body {
   border-radius: 45%;
   margin-top: 20px;
   box-shadow: 2px 2px 10px #aa0505c4;
+  z-index:1;
+  background-color: rgb(142, 143, 143);
+  position: absolute;
+  cursor: grabbing;
+  
+}
+.cover:hover{
+  transition: 0.3s ease-in-out;
+  background-color: transparent;
+  
 }
 .mode h3 {
   text-align: center;
@@ -257,4 +269,5 @@ footer{
   padding: 20px;
   position: absolute;
   width: 100%;
+  letter-spacing: 5px;
 }
