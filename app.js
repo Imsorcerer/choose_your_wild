@@ -97,16 +97,17 @@ const createScratchCardHard = (canvasId) => {
   });
   init();
 };
-for (let i = 1; i <=500; i++) {
-  if(i>=37&&i<=500)
+
+for (let i = 1; i<=500; i++) {
+  if(i>=57&&i<=500)
       continue;
     createScratchCardEasy(`.scratching${i}`);
 }
 for (let j = 501; j <= 1000; j++) {
-  if(j>=525&&j<=1000)
+  if(j>=531&&j<=1000)
   continue;
   createScratchCardMedium(`.scratching${j}`);
 }
-for (let k = 1001; k <= 1050; k++) {
+for (let k = 1001; k <= 1019; k++) {
   createScratchCardHard(`.scratching${k}`);
 }
