@@ -1,113 +1,69 @@
-const createScratchCardEasy = (canvasId) => {
-  let canvas = document.querySelector(canvasId);
-  let context = canvas.getContext("2d");
+// Create scratch card function
+const createScratchCard = (canvasId) => {
+  const canvas = document.querySelector(canvasId);
+  if (!canvas) return;
+  const context = canvas.getContext("2d");
+
+  const parent = canvas.parentElement;
+
+  const resizeCanvas = () => {
+    const rect = parent.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+    init();
+  };
 
   const init = () => {
+    context.globalCompositeOperation = "source-over";
     context.fillStyle = "grey";
-    context.fillRect(0, 0, 200, 150);
+    context.fillRect(0, 0, canvas.width, canvas.height);
   };
 
   const scratch = (x, y) => {
     context.globalCompositeOperation = "destination-out";
     context.beginPath();
-    context.arc(x, y, 15, 0, Math.PI * 2);
+    context.arc(x, y, 20, 0, Math.PI * 2);
     context.fill();
   };
+
   let isDrawing = false;
+
   canvas.addEventListener("mousedown", (e) => {
+    e.preventDefault();
     isDrawing = true;
     scratch(e.offsetX, e.offsetY);
   });
   canvas.addEventListener("mousemove", (e) => {
-    if (isDrawing) {
-      scratch(e.offsetX, e.offsetY);
-    }
+    e.preventDefault();
+    if (isDrawing) scratch(e.offsetX, e.offsetY);
   });
-  canvas.addEventListener("mouseup", () => {
-    isDrawing = false;
-  });
-  canvas.addEventListener("mouseleave", () => {
-    isDrawing = false;
-  });
-  init();
-};
-const createScratchCardMedium = (canvasId) => {
-  let canvas = document.querySelector(canvasId);
-  let context = canvas.getContext("2d");
+  canvas.addEventListener("mouseup", () => (isDrawing = false));
+  canvas.addEventListener("mouseleave", () => (isDrawing = false));
 
-  const init = () => {
-    context.fillStyle = "grey";
-    context.fillRect(0, 0, 200, 150);
-  };
-
-  const scratch = (x, y) => {
-    context.globalCompositeOperation = "destination-out";
-    context.beginPath();
-    context.arc(x, y, 15, 0, Math.PI * 2);
-    context.fill();
-  };
-  let isDrawing = false;
-  canvas.addEventListener("mousedown", (e) => {
-    isDrawing = true;
-    scratch(e.offsetX, e.offsetY);
-  });
-  canvas.addEventListener("mousemove", (e) => {
-    if (isDrawing) {
-      scratch(e.offsetX, e.offsetY);
-    }
-  });
-  canvas.addEventListener("mouseup", () => {
-    isDrawing = false;
-  });
-  canvas.addEventListener("mouseleave", () => {
-    isDrawing = false;
-  });
-  init();
-};
-const createScratchCardHard = (canvasId) => {
-  let canvas = document.querySelector(canvasId);
-  let context = canvas.getContext("2d");
-
-  const init = () => {
-    context.fillStyle = "grey";
-    context.fillRect(0, 0, 200, 150);
-  };
-
-  const scratch = (x, y) => {
-    context.globalCompositeOperation = "destination-out";
-    context.beginPath();
-    context.arc(x, y, 15, 0, Math.PI * 2);
-    context.fill();
-  };
-  let isDrawing = false;
-  canvas.addEventListener("mousedown", (e) => {
-    isDrawing = true;
-    scratch(e.offsetX, e.offsetY);
-  });
-  canvas.addEventListener("mousemove", (e) => {
-    if (isDrawing) {
-      scratch(e.offsetX, e.offsetY);
-    }
-  });
-  canvas.addEventListener("mouseup", () => {
-    isDrawing = false;
-  });
-  canvas.addEventListener("mouseleave", () => {
-    isDrawing = false;
-  });
-  init();
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
 };
 
-for (let i = 1; i<=500; i++) {
-  if(i>=57&&i<=500)
-      continue;
-    createScratchCardEasy(`.scratching${i}`);
-}
-for (let j = 501; j <= 1000; j++) {
-  if(j>=531&&j<=1000)
-  continue;
-  createScratchCardMedium(`.scratching${j}`);
-}
-for (let k = 1001; k <= 1019; k++) {
-  createScratchCardHard(`.scratching${k}`);
-}
+// Initialize cards
+document.querySelectorAll("canvas").forEach((canvas, i) => {
+  createScratchCard(`.${canvas.classList[0]}`);
+});
+
+/* Prevent Default Refresh / Reload */
+document.addEventListener("keydown", (event) => {
+  if (event.key === "F5" || (event.ctrlKey && event.key.toLowerCase() === "r")) {
+    event.preventDefault();
+    alert("Page refresh is disabled!");
+  }
+});
+
+document.querySelectorAll("form").forEach((form) => {
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+  });
+});
+
+window.addEventListener("beforeunload", (event) => {
+  event.preventDefault();
+  event.returnValue = "";
+});
